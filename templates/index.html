@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hidden Inputs</title>
+</head>
+<body>
+    <div class="container bg-light">
+        <div>
+            <form action="">
+                Your Gold: <input class="border border-dark" type="text" name="your_gold" value='{{session["gold"]}}' readonly>
+            </form>
+        </div>
+
+        <form action="/process_money"  method="post" style="display: inline-block">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Farm</h5>
+                    <p class="card-text">(earns 10-20 golds)</p>
+                    <input type="hidden" name="location" value="farm">
+                    <input class="btn btn-outline-warning" type="submit" value="Find Gold!">
+                </div>
+            </div>
+        </form>
+
+        <form action="/process_money" method="post" style="display: inline-block">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Cave</h5>
+                    <p class="card-text">(earns 5-10 golds)</p>
+                    <input type="hidden" name="location" value="cave">
+                    <input class="btn btn-outline-warning" type="submit" value="Find Gold!">
+                </div>
+            </div>
+        </form>
+
+        <form action="/process_money" method="post" style="display: inline-block">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">House</h5>
+                <p class="card-text">(earns 2-5 golds)</p>
+                <input type="hidden" name="location" value="house">
+                <input class="btn btn-outline-warning" type="submit" value="Find Gold!">
+            </div>
+        </div>
+        </form>
+
+        <form action="/process_money" method="post" style="display: inline-block">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Casino</h5>
+                <p class="card-text">(earns/takes 0-50 golds)</p>
+                <input type="hidden" name="location" value="casino">
+                <input class="btn btn-outline-warning" type="submit" value="Find Gold!">
+            </div>
+        </div>
+        
+        </form>
+        <a href="/reset" class="btn btn-outline-dark" >Give up already? Reset</a>
+        <p style="margin-top: 10px;">Your Activites</p>
+        <div class="activities border border-outline-dark" style='height:200px; overflow:auto;'>   
+            {% for activity in session['activities_list'] %}
+                <p>{{activity}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
